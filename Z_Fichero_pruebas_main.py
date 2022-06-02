@@ -264,14 +264,27 @@ try:
                                 menu=int(input("Que vamos a hacer hoy : "))
                                 
                                 if menu == 1:
+                                    cerrar=0
                                     for x in range(0,len(prio_cola.lista)):
-                                        print(recortar_listaprioridad(prio_cola.lista,2)) #Es none tipe entonces me sale el None ese pochisimo
-                                        conti=0
-                                        while conti!= 1:
-                                            conti=int(input("Cuando termine la tarea pulse 1:    "))
-                                            prio_cola.pop_task()
-                                            
-                                    print("Has completado todas las tareas hoy")
+                                        if cerrar==1:
+                                            break
+                                        else:
+                                            #Es none tipe entonces me sale el None ese pochisimo
+                                            a = recortar_listaprioridad(prio_cola.lista,2)
+                                            print("" if a is None else a)
+                                            conti=0
+                                            while conti!= 1:
+                                                print("para descansar pulse cualquier numero")
+                                                continuar=int(input("Cuando termine la tarea pulse 1:    "))
+                                                print("")
+                                                if continuar==1:
+                                                    prio_cola.pop_task()
+                                                    conti=1
+                                                else:
+                                                    cerrar=1
+                                                    break
+                                                
+                                    print("No queda tareas o has descansado")
                                 else :    
                                     print("Hasta otro dia Admin")
                                     salir=True
